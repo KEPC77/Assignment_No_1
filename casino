@@ -1,0 +1,324 @@
+/* 
+ * File: main.cpp
+ * Author: Kenny Emmanuel Perez
+ * Purpose: Project 1
+ * Created on January 28, 2016 6:38 PM
+ */
+
+#include <cstdlib>
+#include <iostream>
+#include <ctime>
+
+int dealerCode();
+
+using namespace std;
+
+int main(int argc, char** argv) {
+    int choice,d,num;
+    int gold = 100;
+    int x,y,z,a,b,c,l,m,n;
+    string userInput;
+    srand(time(0));
+    
+    do{
+        cout<< "Â¡Â¡Â¡Â¡ **** WELCOME TO THE R.C.C. CASINO **** !!!! "<<endl;
+        cout<<" "<<endl;
+    cout<< "You are given "<<gold<<" gold coins to start playing."<<endl;
+    cout<< "Press 1 for Blackjack or 2 for Slots.";
+    cout<< " " <<endl;
+    cin>>choice;
+    switch (choice){
+        case 1:
+            
+            cout<<"The goal of Blackjack is to:"<<endl; 
+            cout<<" "<<endl;
+            cout<<"1. Beat the dealer by getting as close to or exactly at 21."<<endl;
+            cout<<"2. Having a number higher than the dealer while being "<<endl;
+            cout<<"   at or UNDER 21."<<endl;
+            cout<<" "<<endl;
+            cout<<"Press s followed by ENTER to start playing. Hit any other key "<<endl;
+            cout<<"followed by ENTER to return to the main menu."<<endl;
+            cin>>userInput;
+            
+            if (userInput == "s")
+            {
+            while (userInput != "stop")
+            {
+                cout <<"How many gold coins do you bet? ";
+                    cin >> num;
+            gold = (gold-num);
+            cout<<"Balance left: "<<gold<<""<<endl;
+                
+            srand(time(0));
+                int card1, card2, card3, card4, card5, cardTotal;
+                card1 = rand() % 11 + 1;
+                card2 = rand() % 11 + 1;
+                card3 = rand() % 11 + 1;
+                card4 = rand() % 11 + 1;
+                card5 = rand() % 11 + 1;
+            
+                int dcardTotal=dealerCode();
+                
+                cout<<"Card 1: "<<card1<<endl;
+                cout<<"Card 2: "<<card2<<endl;
+                cardTotal =card1+card2;
+                cout<< "Your card count is: "<<cardTotal<<endl;
+                
+                if (cardTotal > 21)
+                {
+                    cout << "You lose";
+                    gold = gold+num;
+                    cout << "Error. You do not lose anything";
+                    cout << " Gold Balance is: " << gold << " ";
+                }
+                else if (cardTotal == 21 )
+                {
+                    cout << "Winner Winner, Chicken Dinner! ";
+                    num = num*4;
+                    gold = gold + num;
+                    cout<<"New gold balance is: "<<gold<<" ";
+                }
+                else
+                {
+                    cout<<"Press h for another card. Otherwise, press ";
+                    cout<<"s to stay with your current cards. ";
+                    cin>>userInput;
+                    
+                    if(userInput == "h")
+                    {
+                    cout<<"Card 3 : "<<card3<<endl;
+                    cardTotal = cardTotal+card3;
+                    cout<<"Your card count is: "<<cardTotal<<endl;
+                    if (cardTotal > 21)
+                    {
+                        cout<<"You Lose";
+                    }
+                    else if (cardTotal == 21)
+                    {
+                        cout<<"Dealers Hand: "<<dcardTotal;
+                        cout<<endl;
+                        
+                        if ( cardTotal > dcardTotal)
+                        {
+                            cout<<"You Win!";
+                            num = num*2;
+                            gold = gold + num;
+                            cout<<"New gold balance is: "<<gold<<" ";
+                        }
+                        else 
+                        {
+                            cout<<"You lose. ";
+                            cout<<" Gold Balance is: "<<gold<<" ";
+                        }
+                    }
+                    else
+                    {
+                    cout<<"Press h for another card. Otherwise, press ";
+                    cout<<"s to stay with your current cards. ";
+                    cin>>userInput;
+                    
+                    if (userInput == "h")
+                    {    
+                    cout<<"Card 4 : "<<card4<<endl;
+                    cardTotal = cardTotal+card4;
+                    cout<<"Your card count is: "<<cardTotal<<endl;
+                    if (cardTotal > 21)
+                    {
+                        cout<<"You Lose. ";
+                        cout<<" Gold Balance is: "<<gold<<" ";
+                    }
+                    else if (cardTotal == 21)
+                    {
+                        cout<<cardTotal<<endl;
+                        cout<<"Dealers Hand: "<<dcardTotal;
+                        cout<<endl;
+                        
+                        if ( cardTotal > dcardTotal )
+                        {
+                            cout<<"You Win!";
+                            num = num*2;
+                            gold = gold + num;
+                            cout<<"New gold balance is: "<<gold<<" ";
+                        }
+                        else 
+                        {
+                            cout<<"You lose. ";
+                            cout<<" Remaining gold balance: " <<gold<<" ";
+                        }
+                    }
+                    else
+                    {
+                    cout<<"Press h for another card. Otherwise, press ";
+                    cout<<"s to stay with your current cards. ";
+                    cin>>userInput;
+                    
+                    if (userInput == "h")
+                    {
+                    cout<<"Card 5 : " << card5 << endl; 
+                    cardTotal = cardTotal+card5;
+                    cout<< "Your card count is: " << cardTotal << endl;
+                    if (cardTotal > 21)
+                    {
+                        cout<<"You Lose.";
+                        cout<<" Remaining gold left: "<<gold<<" ";
+                    }
+                    else
+                    {
+                        cout << "Dealers Hand: " << dealerCode();
+                        cout <<"You Win by a 5 card draw.";
+                        num = num*2;
+                        gold = gold + num;
+                        cout << "New gold balance is: " <<gold<< " ";
+                    }
+                    }
+                    }
+                    }
+                    else
+                    {
+                        cout<<cardTotal<<endl;
+                        cout<<"Dealers Hand: "<<dcardTotal;
+                        cout<<endl;
+                        if ( cardTotal > dcardTotal)
+                        {
+                            cout << "You Win!";
+                            num = num*2;
+                            gold = gold + num;
+                            cout << "New gold Balance is: " <<gold<<" ";
+                        }
+                        else 
+                        {
+                            cout << "You lose. ";
+                            cout <<" Remaining gold left: "<<gold<<" ";
+                        }
+                    }
+                    
+                  }
+                }
+                    else
+                    {
+                        cout << cardTotal << endl;
+                        cout << "Dealers Hand: " << dcardTotal;
+                        cout << endl;
+                        if ( cardTotal > dcardTotal)
+                        {
+                            cout << "You Win!";
+                            num = num*2;
+                            gold = gold + num;
+                            cout << "New gold balance is: "<<gold<<" ";
+                        }
+                        else 
+                        {
+                            cout << "You lose. ";
+                            cout <<" Remaining gold left: "<<gold<<" ";
+                        }
+                    }
+            }
+                cout << endl;
+                cout << "Play again? Type stop to go back.";
+                cin >> userInput;
+                
+            }
+            }
+            
+        break;
+        
+        case 2:
+            
+            cout << "Welcome to Slots. Get three of a kind in a straight" <<endl;
+            cout << "line and win." << endl;
+            cout << "Press s to Spin. Press b to go Back." << endl;
+            cin >> userInput;
+            if (userInput == "s")
+            {
+                while (userInput != "stop")
+                {
+                    cout << "How much Gold do you bet? ";
+                    cin >> num;
+                    gold = gold - num;
+            cout << " New gold balance is: " << gold << " " << endl;
+               x = rand()%4;
+               y = rand()%4;
+               z = rand()%4;
+               a = rand()%4;
+               b = rand()%4;
+               c = rand()%4;
+               l = rand()%4;
+               m = rand()%4;
+               n = rand()%4;
+              
+            cout << x << y << z << endl;
+            cout << a << b << c << endl;
+            cout << l << m << n << endl;
+            
+            if (x==y && x==z || a==b && a==c || l==m && l==n)
+            {
+                cout << "You win!";
+                num = num*2;
+                gold = gold+num;
+                cout << " New gold balance is: "<<gold<<" ";
+            }
+            else 
+            {
+                cout <<"You lose.";
+                cout <<" Remaining gold left: "<<gold<< " ";
+            }
+    
+        cout << endl;
+        cout << "Press s to play again. Otherwise, press ";
+        cout << "stop to go back " << endl;
+        cin >> userInput;
+               }
+            }
+                  
+           
+        
+        break;
+
+        default: 
+                cout << "Invalid Entry. Let's try this again..."<<endl;
+    }    
+        
+    }while (choice >=1 && choice <=3);
+    
+
+    return 0;
+}
+
+int dealerCode()
+{
+    
+    
+    int dcard1, dcard2, dcard3, dcard4, dcard5, dcardTotal;
+                dcard1 = rand() % 11 + 1;
+                dcard2 = rand() % 11 + 1;
+                dcard3 = rand() % 11 + 1;
+                dcard4 = rand() % 11 + 1;
+                
+                
+                
+                dcardTotal = dcard1+dcard2;
+                if (dcardTotal < 15)
+               {
+                    //cout << "Dealer Takes a card" << " " ;
+                    dcardTotal = dcardTotal+dcard3;
+                    
+                    if (dcardTotal < 15)
+                    {
+                      //  cout << "Dealer Takes a card" << " ";
+                        dcardTotal = dcardTotal+dcard4;
+                                
+                    }
+                    
+                    else if (dcardTotal > 21)
+                    {
+                        cout << "Dealer Loses";
+                    }
+                    else 
+                    {
+                        cout<<dcardTotal;
+                    }
+                
+                }
+                else
+
+              return dcardTotal;
